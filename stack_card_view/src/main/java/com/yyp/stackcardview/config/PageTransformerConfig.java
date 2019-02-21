@@ -1,7 +1,6 @@
 package com.yyp.stackcardview.config;
 
 import android.support.annotation.IntDef;
-import android.webkit.WebSettings;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
