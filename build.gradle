@@ -18,7 +18,7 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        maven { url 'http://pre.haier.com/nexus/content/repositories/qdmobile-release/' }
     }
 }
 
