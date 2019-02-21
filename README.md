@@ -1,19 +1,35 @@
 # 层叠片卡效果
 
 ## 说明
+
 通过设置 ViewPager 的 PageTransformer 实现卡片层叠效果，支持左层叠和右层叠两种效果
 
 ## 添加依赖
 
+1、 主工程 build.gradle 添加仓库地址:
 
+```gradle
+allprojects {
+    repositories {
+        maven { url "http://10.100.62.98:8086/nexus/content/groups/public/" }
+    }
+}
+```
+
+2、 项目工程 build.gradle 添加依赖:
+
+
+```gradle
+implementation 'cn.daily.android:stack-card-view:0.0.1'
+```
 
 ## 用法
 
 以左层叠效果为例
 
-1. 控件使用 ViewPager
+1、 控件使用 ViewPager
 
-2. 卡片使用 Fragment，布局示例如下：
+2、 卡片使用 Fragment，布局示例如下：
 
 主要是 CardView 的属性 android:layout_gravity 设置为 right，居右；右层叠反之
 
@@ -89,9 +105,10 @@
 </LinearLayout>
 ```
 
-3. 自定义 ViewPager 的适配器，继承 StackCardAdapter，示例如下：
+3、 自定义 ViewPager 的适配器，继承 StackCardAdapter，示例如下：
 
 只需要处理 getItem() 的逻辑
+
 
 ```java
 public class StackCardLeftAdapter extends StackCardAdapter<NewsBean> {
@@ -111,7 +128,8 @@ public class StackCardLeftAdapter extends StackCardAdapter<NewsBean> {
 }
 ```
 
-4. 为 ViewPager 设置 PageTransFormer，示例如下：
+4、 为 ViewPager 设置 PageTransFormer，这里使用StackCardPageTransformer，示例如下：
+
 
 ```java
 stackCardViewPager.setPageTransformer(true, StackCardPageTransformer.getBuild()
@@ -133,8 +151,7 @@ stackCardViewPager.setPageTransformer(true, StackCardPageTransformer.getBuild()
 | alphaOffset | float | 底下的卡片相对于上一层卡片的透明度 |
 | maxShowPage | int | 最多显示的卡片个数 |
 
-
-5. 加载数据
+5、 加载数据
 
 左层叠效果：需要将数据倒序排列，并将 ViewPager 定位到最后一张卡片
 
