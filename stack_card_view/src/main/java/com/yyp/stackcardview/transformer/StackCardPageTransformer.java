@@ -79,8 +79,12 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
                 page.setAlpha(alpha);
 
             }else{
+                //卡片透明度渐变
                 page.setAlpha(0);
             }
+        }else if(position <= 1f){
+            //旋转角度：往右划  0 - 10，往左划 10 - 0
+            page.setRotation((10 * position));
         }
 
         if(position == 0f){
@@ -112,6 +116,9 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
             }else{
                 page.setAlpha(0);
             }
+        }else if(position >= -1f){
+            //旋转角度：往右划  0 - -10，往左划 -10 - 0
+            page.setRotation((10 * position));
         }
 
         if(position == 0f){

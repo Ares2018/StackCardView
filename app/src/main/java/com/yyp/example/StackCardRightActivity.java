@@ -3,6 +3,7 @@ package com.yyp.example;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.yyp.example.adapter.StackCardRightAdapter;
 import com.yyp.example.bean.NewsBean;
@@ -23,12 +24,15 @@ public class StackCardRightActivity extends AppCompatActivity {
     private ViewPager stackCardViewPager;
     private StackCardRightAdapter stackCardRightAdapter;
 
+    private TextView imageShowPosition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stack_card_right);
 
         stackCardViewPager = findViewById(R.id.stack_card_vp);
+        imageShowPosition = findViewById(R.id.image_show_position);
 
         configRightStackCardViewPager();
         loadData();
@@ -49,6 +53,25 @@ public class StackCardRightActivity extends AppCompatActivity {
         //创建适配器
         stackCardRightAdapter = new StackCardRightAdapter(getSupportFragmentManager());
         stackCardViewPager.setAdapter(stackCardRightAdapter);
+
+        stackCardViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                //显示浏览到第几张
+                imageShowPosition.setText(String.format("%s/%s",
+                        stackCardRightAdapter.toRealShowPosition(i), stackCardRightAdapter.getList().size()));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
     /**
@@ -62,5 +85,6 @@ public class StackCardRightActivity extends AppCompatActivity {
         }
 
         stackCardRightAdapter.setList(list, false);
+        stackCardViewPager.setCurrentItem(stackCardRightAdapter.getCount() / 2 - stackCardRightAdapter.getCount() / 2 % list.size(), false);
     }
 }

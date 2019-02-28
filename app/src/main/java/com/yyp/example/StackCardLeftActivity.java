@@ -3,6 +3,7 @@ package com.yyp.example;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import com.yyp.example.adapter.StackCardLeftAdapter;
 import com.yyp.example.bean.NewsBean;
@@ -23,12 +24,15 @@ public class StackCardLeftActivity extends AppCompatActivity {
     private ViewPager stackCardViewPager;
     private StackCardLeftAdapter stackCardLeftAdapter;
 
+    private TextView imageShowPosition;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stack_card_left);
 
         stackCardViewPager = findViewById(R.id.stack_card_vp);
+        imageShowPosition = findViewById(R.id.image_show_position);
 
         configLeftStackCardViewPager();
         loadData();
@@ -49,6 +53,25 @@ public class StackCardLeftActivity extends AppCompatActivity {
         //创建适配器
         stackCardLeftAdapter = new StackCardLeftAdapter(getSupportFragmentManager());
         stackCardViewPager.setAdapter(stackCardLeftAdapter);
+
+        stackCardViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                //显示浏览到第几张
+                imageShowPosition.setText(String.format("%s/%s",
+                        stackCardLeftAdapter.toRealShowPosition(i), stackCardLeftAdapter.getList().size()));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
     /**
@@ -56,12 +79,12 @@ public class StackCardLeftActivity extends AppCompatActivity {
      */
     private void loadData(){
         List<NewsBean> list = new ArrayList<>();
-        for (int i = 1; i < 7; i++) {
+        for(int i = 1; i<=10; i++){
             list.add(new NewsBean("", "你好！外星人" + i, getResources().getString(R.string.content),
-                    "在浙里", 100 + i * 10));
+                    "在浙里", 100 + i));
         }
 
         stackCardLeftAdapter.setList(list, true);
-        stackCardViewPager.setCurrentItem(list.size()-1, false); //刚开始显示最后一个，也就是第一条数据
+        stackCardViewPager.setCurrentItem(stackCardLeftAdapter.getCount() / 2 - stackCardLeftAdapter.getCount() / 2 % list.size() + list.size() -1, false); //刚开始显示最后一个，也就是第一条数据
     }
 }
