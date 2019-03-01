@@ -1,5 +1,7 @@
 package com.yyp.stackcardview.adapter;
 
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
@@ -13,7 +15,7 @@ import java.util.List;
  */
 public abstract class BaseStackCardAdapter<T> extends FragmentPagerAdapter {
 
-    private List<T> list;
+    private List<T> mData;
     private boolean isReverse = false; //数据是否倒序排列 默认正序
 
     public BaseStackCardAdapter(FragmentManager fm) {
@@ -26,12 +28,12 @@ public abstract class BaseStackCardAdapter<T> extends FragmentPagerAdapter {
      * @param list 数据集合
      * @param reverse 是否倒序排序
      */
-    public void setList(List<T> list, boolean reverse) {
+    public void setList(@NonNull List<T> list, boolean reverse) {
         this.isReverse = reverse;
         if(reverse){
             Collections.reverse(list); //倒序排序
         }
-        this.list = list;
+        this.mData = list;
         notifyDataSetChanged();
     }
 
@@ -40,8 +42,11 @@ public abstract class BaseStackCardAdapter<T> extends FragmentPagerAdapter {
      *
      * @return .
      */
-    public List<T> getList() {
-        return list;
+    public List<T> getData() {
+        if(mData == null){ //空指针异常
+            throw new NullPointerException("data isn't null.");
+        }
+        return mData;
     }
 
     /**
@@ -51,7 +56,7 @@ public abstract class BaseStackCardAdapter<T> extends FragmentPagerAdapter {
      * @return 数据集合中的实际位置
      */
     public int toRealPosition(int pos){
-        return pos % getList().size();
+        return pos % getData().size();
     }
 
     /**
@@ -60,16 +65,43 @@ public abstract class BaseStackCardAdapter<T> extends FragmentPagerAdapter {
      * @param pos ViewPager中的页面位置
      * @return 实际浏览到第几张卡片
      */
-    public int toRealShowPosition(int pos){
+    public int toRealShowPosition(int pos) {
         if(isReverse){
-            return getList().size() - toRealPosition(pos);
+            return getData().size() - toRealPosition(pos);
         }else{
             return toRealPosition(pos) + 1;
         }
     }
 
+    /**
+     * 获取中间且是第一个卡片的位置
+     *
+     * @return .
+     */
+    public int getMiddlePosition(){
+        int middlePos = getCount() / 2;
+        if(isReverse){
+            return middlePos - (middlePos % getData().size()) + (getData().size() - 1);
+        }else{
+            return middlePos - (middlePos % getData().size());
+        }
+    }
+
+    /**
+     * 由子类实现 返回卡片Fragment
+     *
+     * @param pos 数据集合中的实际位置
+     * @return Fragment
+     */
+    public abstract Fragment getFragment(int pos);
+
     @Override
     public int getCount() {
         return Integer.MAX_VALUE;
+    }
+
+    @Override
+    public Fragment getItem(int i) {
+        return getFragment(toRealPosition(i));
     }
 }

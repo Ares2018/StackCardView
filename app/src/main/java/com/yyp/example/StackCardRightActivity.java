@@ -44,9 +44,10 @@ public class StackCardRightActivity extends AppCompatActivity {
     private void configRightStackCardViewPager() {
         stackCardViewPager.setPageTransformer(true, StackCardPageTransformer.getBuild()
                 .setViewType(PageTransformerConfig.RIGHT) //层叠方向
-                .setTranslationOffset(DensityUtils.dp2px(this, 50f)) //左右位置偏移量
+                .setTranslationOffset(DensityUtils.dp2px(this, 45f)) //左右位置偏移量
                 .setScaleOffset(DensityUtils.dp2px(this, 50f)) //缩放偏移量
                 .setAlphaOffset(0.5f) //卡片透明度偏移量
+                .setRotationOffest(10) //卡片滑动时的最大旋转角度
                 .setMaxShowPage(3) //最大显示的页数
                 .create(stackCardViewPager));
 
@@ -64,7 +65,7 @@ public class StackCardRightActivity extends AppCompatActivity {
             public void onPageSelected(int i) {
                 //显示浏览到第几张
                 imageShowPosition.setText(String.format("%s/%s",
-                        stackCardRightAdapter.toRealShowPosition(i), stackCardRightAdapter.getList().size()));
+                        stackCardRightAdapter.toRealShowPosition(i), stackCardRightAdapter.getData().size()));
             }
 
             @Override
@@ -85,6 +86,6 @@ public class StackCardRightActivity extends AppCompatActivity {
         }
 
         stackCardRightAdapter.setList(list, false);
-        stackCardViewPager.setCurrentItem(stackCardRightAdapter.getCount() / 2 - stackCardRightAdapter.getCount() / 2 % list.size(), false);
+        stackCardViewPager.setCurrentItem(stackCardRightAdapter.getMiddlePosition(), false);
     }
 }

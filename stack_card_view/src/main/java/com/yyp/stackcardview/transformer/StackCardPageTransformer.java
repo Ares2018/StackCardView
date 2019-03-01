@@ -83,8 +83,8 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
                 page.setAlpha(0);
             }
         }else if(position <= 1f){
-            //旋转角度：往右划  0 - 10，往左划 10 - 0
-            page.setRotation((10 * position));
+            //旋转角度：往右划  0 - n，往左划 n - 0
+            page.setRotation((mBuild.getRotationOffset() * position));
         }
 
         if(position == 0f){
@@ -117,8 +117,8 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
                 page.setAlpha(0);
             }
         }else if(position >= -1f){
-            //旋转角度：往右划  0 - -10，往左划 -10 - 0
-            page.setRotation((10 * position));
+            //旋转角度：往右划  0 - -n，往左划 -n - 0
+            page.setRotation((mBuild.getRotationOffset() * position));
         }
 
         if(position == 0f){
@@ -145,6 +145,11 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
          * 透明度偏移量
          */
         private float mAlphaOffset = 0.5f;
+
+        /**
+         * 最上层卡片滑动时的最大旋转角度
+         */
+        private float mRotationOffset = 10;
 
         /**
          * 视图类型
@@ -184,6 +189,15 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
 
         public Build setAlphaOffset(float alphaOffset) {
             this.mAlphaOffset = alphaOffset;
+            return this;
+        }
+
+        public float getRotationOffset() {
+            return mRotationOffset;
+        }
+
+        public Build setRotationOffest(float rotationOffset) {
+            this.mRotationOffset = rotationOffset;
             return this;
         }
 

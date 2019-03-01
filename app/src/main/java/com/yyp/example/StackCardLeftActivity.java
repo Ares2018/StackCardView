@@ -44,9 +44,10 @@ public class StackCardLeftActivity extends AppCompatActivity {
     private void configLeftStackCardViewPager() {
         stackCardViewPager.setPageTransformer(true, StackCardPageTransformer.getBuild()
                 .setViewType(PageTransformerConfig.LEFT) //层叠方向
-                .setTranslationOffset(DensityUtils.dp2px(this, 50f)) //左右位置偏移量
+                .setTranslationOffset(DensityUtils.dp2px(this, 45f)) //左右位置偏移量
                 .setScaleOffset(DensityUtils.dp2px(this, 50f)) //缩放偏移量
                 .setAlphaOffset(0.5f) //卡片透明度偏移量
+                .setRotationOffest(10) //卡片滑动时的最大旋转角度
                 .setMaxShowPage(3) //最大显示的页数
                 .create(stackCardViewPager));
 
@@ -64,7 +65,7 @@ public class StackCardLeftActivity extends AppCompatActivity {
             public void onPageSelected(int i) {
                 //显示浏览到第几张
                 imageShowPosition.setText(String.format("%s/%s",
-                        stackCardLeftAdapter.toRealShowPosition(i), stackCardLeftAdapter.getList().size()));
+                        stackCardLeftAdapter.toRealShowPosition(i), stackCardLeftAdapter.getData().size()));
             }
 
             @Override
@@ -85,6 +86,6 @@ public class StackCardLeftActivity extends AppCompatActivity {
         }
 
         stackCardLeftAdapter.setList(list, true);
-        stackCardViewPager.setCurrentItem(stackCardLeftAdapter.getCount() / 2 - stackCardLeftAdapter.getCount() / 2 % list.size() + list.size() -1, false); //刚开始显示最后一个，也就是第一条数据
+        stackCardViewPager.setCurrentItem(stackCardLeftAdapter.getMiddlePosition(), false); //刚开始显示最后一个，也就是第一条数据
     }
 }
