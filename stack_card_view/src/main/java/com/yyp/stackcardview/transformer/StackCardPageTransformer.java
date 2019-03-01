@@ -65,25 +65,66 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
     @TargetApi(android.os.Build.VERSION_CODES.LOLLIPOP)
     private void leftTransform(View page, float position){
         if (position <= 0f) {
-            if(-position < mBuild.getMaxShowPage()){ //只处理显示的卡片
-                //移动X轴坐标
+            if(-position <= (mBuild.getMaxShowPage() - 1)){ //处理可见的卡片
+                /*
+                    移动X轴坐标
+                    将卡片重叠，再做偏移
+                 */
                 page.setTranslationX((page.getWidth() * -position) + (mBuild.getTranslationOffset() * position));
-                //移动Z轴坐标
+                /*
+                    移动Z轴坐标
+                    position绝对值越大，越往下移动
+                 */
                 page.setTranslationZ(position);
-                //卡片缩放
+                /*
+                    卡片缩放
+                    position绝对值越大，卡片越小
+                 */
                 float scale = (page.getWidth() + mBuild.getScaleOffset() * position) / page.getWidth();
                 page.setScaleX(scale);
                 page.setScaleY(scale);
-                //卡片透明度渐变
+                /*
+                    卡片透明度渐变
+                    1 ~ mBuild.getAlphaOffset() 的 -position 次方
+                 */
                 float alpha = (float) Math.pow(mBuild.getAlphaOffset(), -position);
                 page.setAlpha(alpha);
 
-            }else{
-                //卡片透明度渐变
+            }else if(-position <= mBuild.getMaxShowPage()) { //处理过渡的卡片
+                /*
+                    移动X轴坐标
+                    与第 mBuild.getMaxShowPage()-1 张卡片偏移距离一致
+                 */
+                page.setTranslationX((page.getWidth() * -position) + mBuild.getTranslationOffset()
+                        * (-mBuild.getMaxShowPage() + 1));
+                /*
+                    移动Z轴坐标
+                    position绝对值越大，越往下移动
+                 */
+                page.setTranslationZ(position);
+                /*
+                    卡片缩放
+                    position绝对值越大，卡片越小
+                 */
+                float scale = (page.getWidth() + mBuild.getScaleOffset() * position) / page.getWidth();
+                page.setScaleX(scale);
+                page.setScaleY(scale);
+                /*
+                    卡片透明度渐变
+                    0 ~ mBuild.getAlphaOffset() 的 mBuild.getMaxShowPage()-1 次方
+                 */
+                float alpha = (float) Math.pow(mBuild.getAlphaOffset(), mBuild.getMaxShowPage()-1)
+                        * (mBuild.getMaxShowPage() + position);
+                page.setAlpha(alpha);
+
+            }else{ //处理不可见的卡片
                 page.setAlpha(0);
             }
         }else if(position <= 1f){
-            //旋转角度：往右划  0 - n，往左划 n - 0
+            /*
+                旋转角度
+                往右划 0 ~ mBuild.getRotationOffset()，往左划 mBuild.getRotationOffset() ~ 0
+             */
             page.setRotation((mBuild.getRotationOffset() * position));
         }
 
@@ -102,22 +143,56 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
      */
     private void rightTransform(View page, float position){
         if (position >= 0f) {
-            if(position < mBuild.getMaxShowPage()){ //只处理显示的卡片
-                //移动X轴坐标
+            if(position <= (mBuild.getMaxShowPage() - 1)){ //处理可见的卡片
+                 /*
+                    移动X轴坐标
+                    将卡片重叠，再做偏移
+                 */
                 page.setTranslationX((page.getWidth() * -position) + (mBuild.getTranslationOffset() * position));
-                //卡片缩放
+                /*
+                    卡片缩放
+                    position越大，卡片越小
+                 */
                 float scale = (page.getWidth() - mBuild.getScaleOffset() * position) / page.getWidth();
                 page.setScaleX(scale);
                 page.setScaleY(scale);
-                //卡片透明度渐变
+                /*
+                    卡片透明度渐变
+                    1 ~ mBuild.getAlphaOffset() 的 position 次方
+                 */
                 float alpha = (float) Math.pow(mBuild.getAlphaOffset(), position);
                 page.setAlpha(alpha);
 
-            }else{
+            }else if(position <= mBuild.getMaxShowPage()) { //处理过渡的卡片
+                /*
+                    移动X轴坐标
+                    与第 mBuild.getMaxShowPage()-1 张卡片偏移距离一致
+                 */
+                page.setTranslationX((page.getWidth() * -position) + mBuild.getTranslationOffset()
+                        * (mBuild.getMaxShowPage() - 1));
+                /*
+                    卡片缩放
+                    position越大，卡片越小
+                 */
+                float scale = (page.getWidth() - mBuild.getScaleOffset() * position) / page.getWidth();
+                page.setScaleX(scale);
+                page.setScaleY(scale);
+                /*
+                    卡片透明度渐变
+                    0 ~ mBuild.getAlphaOffset() 的 mBuild.getMaxShowPage()-1 次方
+                 */
+                float alpha = (float) Math.pow(mBuild.getAlphaOffset(), mBuild.getMaxShowPage() - 1)
+                        * (mBuild.getMaxShowPage() - position);
+                page.setAlpha(alpha);
+
+            }else{ //处理不可见的卡片
                 page.setAlpha(0);
             }
         }else if(position >= -1f){
-            //旋转角度：往右划  0 - -n，往左划 -n - 0
+            /*
+                旋转角度
+                往右划 -mBuild.getRotationOffset() ~ 0，往左划 0 ~ -mBuild.getRotationOffset()
+             */
             page.setRotation((mBuild.getRotationOffset() * position));
         }
 

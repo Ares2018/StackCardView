@@ -19,11 +19,11 @@ public class StackCardRightAdapter extends BaseStackCardAdapter<NewsBean> {
     }
 
     @Override
-    public Fragment getItem(int i) {
+    public Fragment getFragment(int pos) {
         if(getData() == null){
             return CardRightFragment.getInstance(null);
         }else{
-            return CardRightFragment.getInstance(getData().get(toRealPosition(i)));
+            return CardRightFragment.getInstance(getData().get(pos));
         }
     }
 }
