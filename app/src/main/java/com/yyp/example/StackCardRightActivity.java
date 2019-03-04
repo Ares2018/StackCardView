@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.yyp.example.adapter.StackCardRightAdapter;
 import com.yyp.example.bean.NewsBean;
 import com.yyp.example.utils.DensityUtils;
+import com.yyp.stackcardview.StackCardViewPager;
 import com.yyp.stackcardview.config.PageTransformerConfig;
 import com.yyp.stackcardview.transformer.StackCardPageTransformer;
 
@@ -21,7 +22,7 @@ import java.util.List;
  */
 public class StackCardRightActivity extends AppCompatActivity {
 
-    private ViewPager stackCardViewPager;
+    private StackCardViewPager stackCardViewPager;
     private StackCardRightAdapter stackCardRightAdapter;
 
     private TextView imageShowPosition;

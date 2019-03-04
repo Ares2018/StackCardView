@@ -14,7 +14,7 @@
         android:textColor="@color/white"
         android:text="@string/image_list_title"/>
 
-    <android.support.v4.view.ViewPager
+    <com.yyp.stackcardview.StackCardViewPager
         android:id="@+id/stack_card_vp"
         android:layout_width="match_parent"
         android:layout_height="560dp"

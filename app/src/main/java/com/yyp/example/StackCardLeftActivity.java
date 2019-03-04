@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.yyp.example.adapter.StackCardLeftAdapter;
 import com.yyp.example.bean.NewsBean;
 import com.yyp.example.utils.DensityUtils;
+import com.yyp.stackcardview.StackCardViewPager;
 import com.yyp.stackcardview.config.PageTransformerConfig;
 import com.yyp.stackcardview.transformer.StackCardPageTransformer;
 
@@ -21,7 +22,7 @@ import java.util.List;
  */
 public class StackCardLeftActivity extends AppCompatActivity {
 
-    private ViewPager stackCardViewPager;
+    private StackCardViewPager stackCardViewPager;
     private StackCardLeftAdapter stackCardLeftAdapter;
 
     private TextView imageShowPosition;
@@ -57,19 +58,19 @@ public class StackCardLeftActivity extends AppCompatActivity {
 
         stackCardViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int i, float v, int i1) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
 
             @Override
-            public void onPageSelected(int i) {
+            public void onPageSelected(int position) {
                 //显示浏览到第几张
                 imageShowPosition.setText(String.format("%s/%s",
-                        stackCardLeftAdapter.toRealShowPosition(i), stackCardLeftAdapter.getData().size()));
+                        stackCardLeftAdapter.toRealShowPosition(position), stackCardLeftAdapter.getData().size()));
             }
 
             @Override
-            public void onPageScrollStateChanged(int i) {
+            public void onPageScrollStateChanged(int state) {
 
             }
         });
