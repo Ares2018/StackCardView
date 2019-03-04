@@ -16,8 +16,8 @@ import android.view.MotionEvent;
  */
 public class StackCardViewPager extends ViewPager {
 
-    private float x1 = 0, x2 = 0;
-    private float y1 = 0, y2 = 0;
+    private float startX, startY;
+    private float endX, endY;
 
     public StackCardViewPager(@NonNull Context context) {
         super(context);
@@ -29,16 +29,16 @@ public class StackCardViewPager extends ViewPager {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+        endX = ev.getX();
+        endY = ev.getY();
         switch (ev.getAction()){
             case MotionEvent.ACTION_DOWN:
-                x1 = ev.getX();
-                y1 = ev.getY();
+                startX = ev.getX();
+                startY = ev.getY();
             case MotionEvent.ACTION_MOVE:
-                x2 = ev.getX();
-                y2 = ev.getY();
             case MotionEvent.ACTION_UP:
-                if((x2 - x1) != 0){
-                    float k = (y2 - y1) / (x2 - x1);
+                if((endX - startX) != 0){
+                    float k = calculateGradient(startX, startY, endX, endY);
                     if(Math.abs(k) > 0){ //滑动路径斜率大于0 进行拦截
                         return true;
                     }
@@ -46,5 +46,20 @@ public class StackCardViewPager extends ViewPager {
                 break;
         }
         return super.onInterceptTouchEvent(ev);
+    }
+
+    /**
+     * 计算斜率
+     *
+     * @param x1 起点x坐标
+     * @param y1 起点y坐标
+     * @param x2 终点x坐标
+     * @param y2 终点y坐标
+     * @return 斜率
+     */
+    private float calculateGradient(float x1, float y1, float x2, float y2){
+        float deltaX = x2 - x1;
+        float deltaY = y2 - y1;
+        return  deltaY / deltaX;
     }
 }

@@ -3,6 +3,8 @@ package com.yyp.example;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yyp.example.adapter.StackCardRightAdapter;
@@ -25,6 +27,7 @@ public class StackCardRightActivity extends AppCompatActivity {
     private StackCardViewPager stackCardViewPager;
     private StackCardRightAdapter stackCardRightAdapter;
 
+    private ImageView back;
     private TextView imageShowPosition;
 
     @Override
@@ -33,10 +36,18 @@ public class StackCardRightActivity extends AppCompatActivity {
         setContentView(R.layout.activity_stack_card_right);
 
         stackCardViewPager = findViewById(R.id.stack_card_vp);
+        back = findViewById(R.id.image_back);
         imageShowPosition = findViewById(R.id.image_show_position);
 
         configRightStackCardViewPager();
         loadData();
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     /**
