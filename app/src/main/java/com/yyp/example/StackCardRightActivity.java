@@ -59,7 +59,7 @@ public class StackCardRightActivity extends AppCompatActivity {
                 .setTranslationOffset(DensityUtils.dp2px(this, 45f)) //左右位置偏移量
                 .setScaleOffset(DensityUtils.dp2px(this, 50f)) //缩放偏移量
                 .setAlphaOffset(0.5f) //卡片透明度偏移量
-                .setRotationOffest(10) //卡片滑动时的最大旋转角度
+                .setRotationOffset(10) //卡片滑动时的最大旋转角度
                 .setMaxShowPage(3) //最大显示的页数
                 .create(stackCardViewPager));
 

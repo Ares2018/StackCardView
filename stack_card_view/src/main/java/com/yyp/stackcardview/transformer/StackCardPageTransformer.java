@@ -271,7 +271,7 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
             return mRotationOffset;
         }
 
-        public Build setRotationOffest(float rotationOffset) {
+        public Build setRotationOffset(float rotationOffset) {
             this.mRotationOffset = rotationOffset;
             return this;
         }
