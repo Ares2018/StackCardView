@@ -20,7 +20,7 @@ allprojects {
 
 
 ```gradle
-implementation 'cn.daily.android:stack-card-view:0.0.3'
+implementation 'cn.daily.android:stack-card-view:0.0.4'
 ```
 
 ## 用法
@@ -32,6 +32,7 @@ implementation 'cn.daily.android:stack-card-view:0.0.3'
 2、 卡片使用 Fragment，布局示例如下：
 
 主要是 CardView 的属性 android:layout_gravity 设置为 right，居右；右层叠反之。
+
 注意：为了防止卡片旋转时，上下部分界面被切掉，需要给 CardView 的 android:layout_marginTop 和 android:layout_marginBottom 设置值，该值要大于等于卡片宽度的十分之一
 
 ```xml
@@ -164,7 +165,7 @@ stackCardLeftAdapter.setList(list, true); //数据倒序排列
 stackCardViewPager.setCurrentItem(stackCardLeftAdapter.getMiddlePosition(), false) //定位到中间位置
 ```
 
-右层叠效果：数据顺序排列
+右层叠效果：数据顺序排列，并将 ViewPager 定位到中间位置
 
 ```java
 stackCardRightAdapter.setList(list, false); //数据顺序排列
@@ -174,13 +175,15 @@ stackCardViewPager.setCurrentItem(stackCardRightAdapter.getMiddlePosition(), fal
 6、显示滑动到第几张卡片
 
 
-
 ```java
-stackCardLeftAdapter.toRealShowPosition(position); //获取实际浏览到的卡片位置
+stackCardLeftAdapter.toRealShowPosition(position); //获取实际浏览到的卡片位置 1~n
 stackCardLeftAdapter.getData().size(); //获取卡片总个数
 
-//监听ViewPager页面滑动
-stackCardViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+/*
+    监听ViewPager页面滑动
+    因为改了源码，所以这里请用 StackViewViewPager.OnPageChangeListener
+ */
+stackCardViewPager.addOnPageChangeListener(new StackViewViewPager.OnPageChangeListener() {
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -198,5 +201,11 @@ stackCardViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() 
 
     }
 });
+```
 
+7、设置切换页面的最小滑动距离
+
+```java
+stackCardViewPager.setMinScrollDistanceOffset(20); //单位dp
+```
 
