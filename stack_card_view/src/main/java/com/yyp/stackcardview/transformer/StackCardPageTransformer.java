@@ -2,10 +2,10 @@ package com.yyp.stackcardview.transformer;
 
 import android.annotation.TargetApi;
 import android.support.annotation.NonNull;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 
 import com.yyp.stackcardview.config.PageTransformerConfig;
+import com.yyp.stackcardview.pager.view.ViewPager;
 
 /**
  * 层叠卡片Transformer

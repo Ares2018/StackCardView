@@ -1,7 +1,6 @@
 package com.yyp.example;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -67,7 +66,7 @@ public class StackCardRightActivity extends AppCompatActivity {
         stackCardRightAdapter = new StackCardRightAdapter(getSupportFragmentManager());
         stackCardViewPager.setAdapter(stackCardRightAdapter);
 
-        stackCardViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        stackCardViewPager.addOnPageChangeListener(new StackCardViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
 

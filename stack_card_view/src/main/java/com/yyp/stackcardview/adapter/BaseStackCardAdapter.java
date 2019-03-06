@@ -3,7 +3,8 @@ package com.yyp.stackcardview.adapter;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+
+import com.yyp.stackcardview.pager.view.FragmentPagerAdapter;
 
 import java.util.Collections;
 import java.util.List;
