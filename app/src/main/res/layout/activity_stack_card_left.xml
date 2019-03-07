@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/red">
 
     <TextView
@@ -16,16 +17,17 @@
 
     <com.yyp.stackcardview.StackCardViewPager
         android:id="@+id/stack_card_vp"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="560dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         android:layout_below="@+id/image_list_title" />
 
     <RelativeLayout
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="30dp">
 
         <ImageView
@@ -37,13 +39,13 @@
             android:layout_centerVertical="true"/>
 
         <TextView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
             android:id="@+id/image_show_position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="21sp"
             android:textColor="@color/white"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
             android:layout_marginRight="30dp"/>
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>
