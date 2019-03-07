@@ -16,6 +16,8 @@ import java.util.List;
 import cn.daily.stack.card.StackCardViewPager;
 import cn.daily.stack.card.config.PageTransformerConfig;
 import cn.daily.stack.card.transformer.StackCardPageTransformer;
+import cn.daily.stack.card.view.ticker.TickerUtils;
+import cn.daily.stack.card.view.ticker.TickerView;
 
 /**
  * 左层叠展示界面
@@ -28,7 +30,7 @@ public class StackCardLeftActivity extends AppCompatActivity {
     private StackCardLeftAdapter stackCardLeftAdapter;
 
     private ImageView back;
-    private TextView imageShowPosition;
+    private TickerView imageShowPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class StackCardLeftActivity extends AppCompatActivity {
         stackCardViewPager = findViewById(R.id.stack_card_vp);
         back = findViewById(R.id.image_back);
         imageShowPosition = findViewById(R.id.image_show_position);
+        imageShowPosition.setCharacterLists(TickerUtils.provideNumberList());
 
         configLeftStackCardViewPager();
         loadData();

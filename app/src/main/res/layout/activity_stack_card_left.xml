@@ -38,7 +38,7 @@
             android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"/>
 
-        <TextView
+        <cn.daily.stack.card.view.ticker.TickerView
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:id="@+id/image_show_position"
