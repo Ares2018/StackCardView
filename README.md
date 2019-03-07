@@ -20,7 +20,7 @@ allprojects {
 
 
 ```gradle
-implementation 'cn.daily.android:stack-card-view:0.0.4'
+implementation 'cn.daily.android:stack-card-view:0.0.6'
 ```
 
 ## 用法
