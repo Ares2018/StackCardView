@@ -9,12 +9,13 @@ import android.widget.TextView;
 import com.yyp.example.adapter.StackCardRightAdapter;
 import com.yyp.example.bean.NewsBean;
 import com.yyp.example.utils.DensityUtils;
-import com.yyp.stackcardview.StackCardViewPager;
-import com.yyp.stackcardview.config.PageTransformerConfig;
-import com.yyp.stackcardview.transformer.StackCardPageTransformer;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.daily.stack.card.StackCardViewPager;
+import cn.daily.stack.card.config.PageTransformerConfig;
+import cn.daily.stack.card.transformer.StackCardPageTransformer;
 
 /**
  * 右层叠展示界面

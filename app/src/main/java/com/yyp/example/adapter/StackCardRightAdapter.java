@@ -5,7 +5,8 @@ import android.support.v4.app.FragmentManager;
 
 import com.yyp.example.bean.NewsBean;
 import com.yyp.example.fragment.CardRightFragment;
-import com.yyp.stackcardview.adapter.BaseStackCardAdapter;
+
+import cn.daily.stack.card.adapter.BaseStackCardAdapter;
 
 /**
  * 右层叠卡片适配器
