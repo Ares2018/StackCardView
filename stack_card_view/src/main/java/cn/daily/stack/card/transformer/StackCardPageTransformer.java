@@ -80,7 +80,12 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
                     卡片缩放
                     position绝对值越大，卡片越小
                  */
-                float scale = (page.getWidth() + mBuild.getScaleOffset() * position) / page.getWidth();
+                float scale;
+                if(page.getWidth() <= 0f){ //处理页面宽度，即分母为0的情况
+                    scale = 0;
+                }else{
+                    scale = (page.getWidth() + mBuild.getScaleOffset() * position) / page.getWidth();
+                }
                 page.setScaleX(scale);
                 page.setScaleY(scale);
                 /*
@@ -106,7 +111,12 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
                     卡片缩放
                     position绝对值越大，卡片越小
                  */
-                float scale = (page.getWidth() + mBuild.getScaleOffset() * position) / page.getWidth();
+                float scale;
+                if(page.getWidth() <= 0f){ //处理页面宽度，即分母为0的情况
+                    scale = 0;
+                }else{
+                    scale = (page.getWidth() + mBuild.getScaleOffset() * position) / page.getWidth();
+                }
                 page.setScaleX(scale);
                 page.setScaleY(scale);
                 /*
@@ -153,7 +163,12 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
                     卡片缩放
                     position越大，卡片越小
                  */
-                float scale = (page.getWidth() - mBuild.getScaleOffset() * position) / page.getWidth();
+                float scale;
+                if(page.getWidth() <= 0f){ //处理页面宽度，即分母为0的情况
+                    scale = 0;
+                }else{
+                    scale = (page.getWidth() - mBuild.getScaleOffset() * position) / page.getWidth();
+                }
                 page.setScaleX(scale);
                 page.setScaleY(scale);
                 /*
@@ -174,7 +189,12 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
                     卡片缩放
                     position越大，卡片越小
                  */
-                float scale = (page.getWidth() - mBuild.getScaleOffset() * position) / page.getWidth();
+                float scale;
+                if(page.getWidth() <= 0f){ //处理页面宽度，即分母为0的情况
+                    scale = 0;
+                }else{
+                    scale = (page.getWidth() - mBuild.getScaleOffset() * position) / page.getWidth();
+                }
                 page.setScaleX(scale);
                 page.setScaleY(scale);
                 /*
