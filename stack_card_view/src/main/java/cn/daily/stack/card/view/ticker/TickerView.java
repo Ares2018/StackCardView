@@ -300,13 +300,13 @@ public class TickerView extends View {
      * @param text the text to display.
      * @param animate whether to animate to text.
      */
-    public void setText(String text, boolean animate) {
+    public void setText(CharSequence text, boolean animate) {
         if (TextUtils.equals(text, this.text)) {
             return;
         }
 
-        this.text = text;
-        final char[] targetText = text == null ? new char[0] : text.toCharArray();
+        this.text = text.toString();
+        final char[] targetText = text == null ? new char[0] : text.toString().toCharArray();
 
         columnManager.setText(targetText);
         setContentDescription(text);
