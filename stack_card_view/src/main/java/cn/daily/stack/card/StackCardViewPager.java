@@ -20,6 +20,7 @@ public class StackCardViewPager extends ViewPager {
 
     private float startX, startY;
     private float endX, endY;
+    public int intervalTime;//滑动最小间隔时间
 
     public StackCardViewPager(@NonNull Context context) {
         super(context);
@@ -55,6 +56,11 @@ public class StackCardViewPager extends ViewPager {
                 break;
         }
         return super.onInterceptTouchEvent(ev);
+    }
+
+    @Override
+    public int getIntervalTime() {
+        return intervalTime;
     }
 
     /**
