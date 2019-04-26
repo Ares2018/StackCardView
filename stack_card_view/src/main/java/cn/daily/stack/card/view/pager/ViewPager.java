@@ -104,6 +104,7 @@ public class ViewPager extends ViewGroup {
     private static final int MIN_FLING_VELOCITY = 400; // dips
 
     private float minPageOffset = 0.6f; //最小偏移比例
+    public int intervalTime;//滑动最小间隔时间
 
     private static final int[] LAYOUT_ATTRS = new int[] {
         android.R.attr.layout_gravity
@@ -941,8 +942,9 @@ public class ViewPager extends ViewGroup {
             final float pageDelta = (float) Math.abs(dx) / (pageWidth + mPageMargin);
             duration = (int) ((pageDelta + 1) * 100);
         }
-        duration = Math.min(duration, MAX_SETTLE_DURATION);
-
+        if (intervalTime!=0){
+            duration = intervalTime;
+        }
         // Reset the "scroll started" flag. It will be flipped to true in all places
         // where we call computeScrollOffset().
         mIsScrollStarted = false;

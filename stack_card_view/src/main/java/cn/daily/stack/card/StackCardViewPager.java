@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 
 import cn.daily.stack.card.view.pager.ViewPager;
@@ -29,12 +30,18 @@ public class StackCardViewPager extends ViewPager {
         setMinScrollDistanceOffset(20); //设置切换页面的最小滑动距离
     }
 
+    private long nowTime;
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         endX = ev.getX();
         endY = ev.getY();
         switch (ev.getAction()){
             case MotionEvent.ACTION_DOWN:
+                if (intervalTime!=0&&System.currentTimeMillis()-nowTime<intervalTime){
+                    return false;
+                }else {
+                    nowTime = System.currentTimeMillis();
+                }
                 startX = ev.getX();
                 startY = ev.getY();
             case MotionEvent.ACTION_MOVE:
