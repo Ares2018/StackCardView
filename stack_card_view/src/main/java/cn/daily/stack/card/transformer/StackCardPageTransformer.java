@@ -2,7 +2,12 @@ package cn.daily.stack.card.transformer;
 
 import android.annotation.TargetApi;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.daily.stack.card.config.PageTransformerConfig;
 import cn.daily.stack.card.view.pager.ViewPager;
@@ -75,7 +80,9 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
                     移动Z轴坐标
                     position绝对值越大，越往下移动
                  */
-                page.setTranslationZ(position);
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
+                    page.setTranslationZ(position);
+                }
                 /*
                     卡片缩放
                     position绝对值越大，卡片越小
@@ -106,7 +113,10 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
                     移动Z轴坐标
                     position绝对值越大，越往下移动
                  */
-                page.setTranslationZ(position);
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
+                    page.setTranslationZ(position);
+                }
+
                 /*
                     卡片缩放
                     position绝对值越大，卡片越小
