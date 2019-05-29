@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
+import android.widget.AdapterView;
 
 import cn.daily.stack.card.view.pager.ViewPager;
 
@@ -45,8 +46,14 @@ public class StackCardViewPager extends ViewPager {
                 }
                 startX = ev.getX();
                 startY = ev.getY();
-            case MotionEvent.ACTION_MOVE:
+                return super.onInterceptTouchEvent(ev);
             case MotionEvent.ACTION_UP:
+                if(Math.abs(endX-startX)<5){
+                    if (mOnItemClickListener!=null){
+                        mOnItemClickListener.onItemClicked(getCurrentItem());
+                    }
+                    return true;
+                }
                 if((endX - startX) != 0){
                     float k = calculateGradient(startX, startY, endX, endY);
                     if(Math.abs(k) > 0){ //滑动路径斜率大于0 进行拦截
@@ -76,5 +83,13 @@ public class StackCardViewPager extends ViewPager {
         float deltaX = x2 - x1;
         float deltaY = y2 - y1;
         return  deltaY / deltaX;
+    }
+
+    private OnItemClickListener mOnItemClickListener;
+    public interface OnItemClickListener{
+        void onItemClicked(int index);
+    }
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener){
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 }
