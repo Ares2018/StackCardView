@@ -1,4 +1,4 @@
-package cn.daily.stack.card.view.pager;
+package cn.daily.stack.card.view.custom;
 
 import android.os.Parcelable;
 import android.support.annotation.NonNull;

@@ -4,10 +4,11 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
-import cn.daily.stack.card.view.pager.FragmentPagerAdapter;
 
 import java.util.Collections;
 import java.util.List;
+
+import cn.daily.stack.card.view.custom.FragmentPagerAdapter;
 
 /**
  * 层叠卡片适配器基类

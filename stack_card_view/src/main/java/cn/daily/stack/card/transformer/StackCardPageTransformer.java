@@ -2,15 +2,10 @@ package cn.daily.stack.card.transformer;
 
 import android.annotation.TargetApi;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import cn.daily.stack.card.config.PageTransformerConfig;
-import cn.daily.stack.card.view.pager.ViewPager;
+import cn.daily.stack.card.view.custom.ViewPager;
 
 /**
  * 层叠卡片Transformer

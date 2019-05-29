@@ -8,7 +8,8 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.AdapterView;
 
-import cn.daily.stack.card.view.pager.ViewPager;
+import cn.daily.stack.card.view.custom.ViewPager;
+
 
 /**
  * 自定义ViewPager
@@ -29,7 +30,6 @@ public class StackCardViewPager extends ViewPager {
 
     public StackCardViewPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        setMinScrollDistanceOffset(20); //设置切换页面的最小滑动距离
     }
 
     private long nowTime;
@@ -63,11 +63,6 @@ public class StackCardViewPager extends ViewPager {
                 break;
         }
         return super.onInterceptTouchEvent(ev);
-    }
-
-    @Override
-    public int getIntervalTime() {
-        return intervalTime;
     }
 
     /**
