@@ -12,9 +12,9 @@ import com.yyp.example.utils.DensityUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.daily.stack.card.StackCardViewPager;
 import cn.daily.stack.card.config.PageTransformerConfig;
 import cn.daily.stack.card.transformer.StackCardPageTransformer;
+import cn.daily.stack.card.view.pager.ViewPager;
 import cn.daily.stack.card.view.ticker.TickerUtils;
 import cn.daily.stack.card.view.ticker.TickerView;
 
@@ -25,7 +25,7 @@ import cn.daily.stack.card.view.ticker.TickerView;
  */
 public class StackCardLeftActivity extends AppCompatActivity {
 
-    private StackCardViewPager stackCardViewPager;
+    private ViewPager stackCardViewPager;
     private StackCardLeftAdapter stackCardLeftAdapter;
 
     private ImageView back;
@@ -69,7 +69,7 @@ public class StackCardLeftActivity extends AppCompatActivity {
         stackCardLeftAdapter = new StackCardLeftAdapter(getSupportFragmentManager());
         stackCardViewPager.setAdapter(stackCardLeftAdapter);
 
-        stackCardViewPager.addOnPageChangeListener(new StackCardViewPager.OnPageChangeListener() {
+        stackCardViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import cn.daily.stack.card.view.pager.ViewPager;
@@ -57,11 +56,11 @@ public class StackCardViewPager extends ViewPager {
         }
         return super.onInterceptTouchEvent(ev);
     }
-
-    @Override
-    public int getIntervalTime() {
-        return intervalTime;
-    }
+//
+//    @Override
+//    public int getIntervalTime() {
+//        return intervalTime;
+//    }
 
     /**
      * 计算斜率
