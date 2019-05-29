@@ -15,7 +15,7 @@
         android:textColor="@color/white"
         android:text="@string/image_list_title"/>
 
-    <cn.daily.stack.card.view.pager.ViewPager
+    <cn.daily.stack.card.StackCardViewPager
         android:id="@+id/stack_card_vp"
         android:layout_weight="1"
         android:layout_width="match_parent"
