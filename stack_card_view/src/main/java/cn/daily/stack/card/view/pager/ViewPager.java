@@ -2168,6 +2168,10 @@ public class ViewPager extends ViewGroup {
                     velocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
                     int initialVelocity = (int) VelocityTrackerCompat.getXVelocity(
                             velocityTracker, mActivePointerId);
+//                    最小设置一个速度
+                    if (initialVelocity<2000){
+                        initialVelocity = 2000;
+                    }
                     mPopulatePending = true;
                     final int width = getClientWidth();
                     final int scrollX = getScrollX();
