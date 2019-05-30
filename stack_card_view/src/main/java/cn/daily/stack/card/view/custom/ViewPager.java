@@ -2241,18 +2241,25 @@ public class ViewPager extends ViewGroup {
                 }
                 break;
             case MotionEvent.ACTION_UP:
+                float dx = ev.getX()-mInitialMotionX;
+                if (Math.abs(dx)<10){
+                    if (mOnItemClickListener!=null){
+                        mOnItemClickListener.onItemClicked(getCurrentItem());
+                    }
+                    Log.e("daily","viewpager onclick");
+                }
                 if (mIsBeingDragged) {
                     final VelocityTracker velocityTracker = mVelocityTracker;
                     velocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
                     int initialVelocity = (int) velocityTracker.getXVelocity(mActivePointerId);
                     Log.e("lujialei","initialVelocity"+initialVelocity);
                     if (initialVelocity>0){
-                        if (Math.abs(initialVelocity)<5000){
-                            initialVelocity = 5000;
+                        if (Math.abs(initialVelocity)<7000){
+                            initialVelocity = 7000;
                         }
                     }else {
-                        if (Math.abs(initialVelocity)<5000){
-                            initialVelocity = -5000;
+                        if (Math.abs(initialVelocity)<7000){
+                            initialVelocity = -7000;
                         }
                     }
 
@@ -2363,6 +2370,14 @@ public class ViewPager extends ViewGroup {
         pageScrolled((int) scrollX);
 
         return needsInvalidate;
+    }
+
+    private OnItemClickListener mOnItemClickListener;
+    public interface OnItemClickListener{
+        void onItemClicked(int index);
+    }
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener){
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 
     /**
