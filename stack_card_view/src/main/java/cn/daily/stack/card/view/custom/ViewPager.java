@@ -2252,7 +2252,6 @@ public class ViewPager extends ViewGroup {
                     final VelocityTracker velocityTracker = mVelocityTracker;
                     velocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
                     int initialVelocity = (int) velocityTracker.getXVelocity(mActivePointerId);
-                    Log.e("lujialei","initialVelocity"+initialVelocity);
                     if (initialVelocity>0){
                         if (Math.abs(initialVelocity)<7000){
                             initialVelocity = 7000;
@@ -2276,7 +2275,6 @@ public class ViewPager extends ViewGroup {
                     final int totalDelta = (int) (x - mInitialMotionX);
                     int nextPage = determineTargetPage(currentPage, pageOffset, initialVelocity,
                             totalDelta);
-                    Log.e("lujialei","nextPage"+nextPage);
                     setCurrentItemInternal(nextPage, true, true, initialVelocity);
 
                     needsInvalidate = resetTouch();
