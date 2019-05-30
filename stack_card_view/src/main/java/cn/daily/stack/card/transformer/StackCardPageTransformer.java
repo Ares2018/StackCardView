@@ -65,6 +65,7 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
     @TargetApi(android.os.Build.VERSION_CODES.LOLLIPOP)
     private void leftTransform(View page, float position){
         if (position <= 0f) {
+            page.setRotation(0);
             if(-position <= (mBuild.getMaxShowPage() - 1)){ //处理可见的卡片
                 /*
                     移动X轴坐标
