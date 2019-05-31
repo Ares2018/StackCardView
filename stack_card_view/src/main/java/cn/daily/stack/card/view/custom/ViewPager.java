@@ -113,7 +113,7 @@ public class ViewPager extends ViewGroup {
     private static final boolean USE_CACHE = false;
 
     private static final int DEFAULT_OFFSCREEN_PAGES = 1;
-    private static final int MAX_SETTLE_DURATION = 600; // ms
+    private static final int MAX_SETTLE_DURATION = 150; // ms滑动动画时间
     private static final int MIN_DISTANCE_FOR_FLING = 25; // dips
 
     private static final int DEFAULT_GUTTER_SIZE = 16; // dips
