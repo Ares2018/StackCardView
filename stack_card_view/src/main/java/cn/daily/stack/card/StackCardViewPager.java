@@ -22,7 +22,6 @@ public class StackCardViewPager extends ViewPager {
 
     private float startX, startY;
     private float endX, endY;
-    public int intervalTime;//滑动最小间隔时间
 
     public StackCardViewPager(@NonNull Context context) {
         super(context);
@@ -32,18 +31,12 @@ public class StackCardViewPager extends ViewPager {
         super(context, attrs);
     }
 
-    private long nowTime;
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         endX = ev.getX();
         endY = ev.getY();
         switch (ev.getAction()){
             case MotionEvent.ACTION_DOWN:
-                if (intervalTime!=0&&System.currentTimeMillis()-nowTime<intervalTime){
-                    return false;
-                }else {
-                    nowTime = System.currentTimeMillis();
-                }
                 startX = ev.getX();
                 startY = ev.getY();
             case MotionEvent.ACTION_MOVE:

@@ -2,6 +2,7 @@ package cn.daily.stack.card.transformer;
 
 import android.annotation.TargetApi;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 
 import cn.daily.stack.card.config.PageTransformerConfig;
@@ -64,7 +65,10 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
      */
     @TargetApi(android.os.Build.VERSION_CODES.LOLLIPOP)
     private void leftTransform(View page, float position){
+//        String tag = (String) page.getTag();
+//        Log.e("lujialei",tag+"===11111===="+position);
         if (position <= 0f) {
+//            Log.e("lujialei",tag+"===22222===="+position);
             page.setRotation(0);
             if(-position <= (mBuild.getMaxShowPage() - 1)){ //处理可见的卡片
                 /*
@@ -134,9 +138,10 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
                 page.setAlpha(alpha);
 
             }else{ //处理不可见的卡片
-                page.setAlpha(0);
+//                page.setAlpha(0);
             }
         }else if(position <= 1f){
+//            Log.e("lujialei",tag+"===33333===="+position+"==visiable=="+page.getVisibility());
             /*
                 旋转角度
                 往右划 0 ~ mBuild.getRotationOffset()，往左划 mBuild.getRotationOffset() ~ 0

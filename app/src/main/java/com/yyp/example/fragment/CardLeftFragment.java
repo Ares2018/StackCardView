@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ public class CardLeftFragment extends Fragment {
     private TextView content;
     private TextView column;
     private TextView readCount;
+    private LinearLayout llContainer;
 
 
     public static CardLeftFragment getInstance(NewsBean news) {
@@ -51,6 +53,7 @@ public class CardLeftFragment extends Fragment {
         content = view.findViewById(R.id.content);
         column = view.findViewById(R.id.column);
         readCount = view.findViewById(R.id.read_count);
+        llContainer = view.findViewById(R.id.ll_container);
 
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +77,7 @@ public class CardLeftFragment extends Fragment {
             content.setText(newsBean.getContent());
             column.setText(newsBean.getColumn());
             readCount.setText(String.format("%d人已读", newsBean.getReadCount()));
+            llContainer.setTag(newsBean.getTitle());
         }
 
     }
