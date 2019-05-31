@@ -2252,15 +2252,15 @@ public class ViewPager extends ViewGroup {
                     final VelocityTracker velocityTracker = mVelocityTracker;
                     velocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);
                     int initialVelocity = (int) velocityTracker.getXVelocity(mActivePointerId);
-//                    if (initialVelocity>0){
-//                        if (Math.abs(initialVelocity)<7000){
-//                            initialVelocity = 7000;
-//                        }
-//                    }else {
-//                        if (Math.abs(initialVelocity)<7000){
-//                            initialVelocity = -7000;
-//                        }
-//                    }
+                    if (initialVelocity>0){
+                        if (Math.abs(initialVelocity)<10000){
+                            initialVelocity = 10000;
+                        }
+                    }else {
+                        if (Math.abs(initialVelocity)<10000){
+                            initialVelocity = -10000;
+                        }
+                    }
                     mPopulatePending = true;
                     final int width = getClientWidth();
                     final int scrollX = getScrollX();
