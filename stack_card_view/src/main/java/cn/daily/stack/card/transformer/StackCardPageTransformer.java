@@ -89,7 +89,7 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
                  */
                 float scale;
                 if(page.getWidth() <= 0f){ //处理页面宽度，即分母为0的情况
-                    scale = 0;
+                    scale = 1f;
                 }else{
                     scale = (page.getWidth() + mBuild.getScaleOffset() * position) / page.getWidth();
                 }
@@ -123,7 +123,7 @@ public class StackCardPageTransformer implements ViewPager.PageTransformer {
                  */
                 float scale;
                 if(page.getWidth() <= 0f){ //处理页面宽度，即分母为0的情况
-                    scale = 0;
+                    scale = 1f;
                 }else{
                     scale = (page.getWidth() + mBuild.getScaleOffset() * position) / page.getWidth();
                 }
